@@ -1,0 +1,36 @@
+The following are some steps to perform SQL Injection attack.
+
+1) First go to the following bricks website.
+
+https://http://www.vulnweb.com//bricks/index.html
+
+2) Go to login pages.
+
+http://testhtml5.vulnweb.com/#/popular
+
+3) Got to first login page.
+
+http://testhtml5.vulnweb.com/#/popular
+
+4) Give a random username and password.
+
+5) You will received an error message of wrong username and password. I found the 
+following query.In otherwords, the following is the query sent from the application server into the database. 
+
+SQL Query: SELECT * FROM users WHERE name='affro' and password='1234'
+
+6) Replace username with any username and at the end write a statement which is always true.
+SQL Query: SELECT * FROM users WHERE name='man' and password='1' or '1=1 --'
+
+7) Coopy and paste this payload.
+
+8) The login is a success.
+
+9)Now on the same login page, give any username and password parameters and intercept the request with the help of Burp Suite. 
+
+10) After this, paste the request in a file.
+
+11) Now, use the sqlmap query "sqlmap -r filename -p username". "-p is the parameter. we are providing username as the parameter". 
+
+12) information we have found is that at the backend there is MYSQL and The number of injectionable points with total
+number of 325 HTTP requests.
